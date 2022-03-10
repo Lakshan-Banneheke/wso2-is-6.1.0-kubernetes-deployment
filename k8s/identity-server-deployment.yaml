@@ -49,7 +49,7 @@ spec:
               - nc -z localhost 9443
           initialDelaySeconds: 250
           periodSeconds: 10
-        imagePullPolicy: Never
+        imagePullPolicy: Always
         resources:
           requests:
             memory: "1Gi"
