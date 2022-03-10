@@ -86,14 +86,19 @@ spec:
         - containerPort: 9443
           protocol: TCP
         volumeMounts:
-          - name: identity-server-conf
+          - name: deployment-conf
             mountPath: /home/wso2carbon/wso2-config-volume/repository/conf/deployment.toml
             subPath: deployment.toml
+          - name: secret-conf
+            mountPath: /home/wso2carbon/wso2-config-volume/repository/conf/security/secret-conf.properties
+            subPath: secret-conf.properties
       serviceAccountName: "wso2svc-account"
       imagePullSecrets:
         - name: wso2is-deployment-creds
       volumes:
-        - name: identity-server-conf
+        - name: deployment-conf
           configMap:
-            name: identity-server-conf
----
+            name: deployment-conf
+        - name: secret-conf
+          configMap:
+            name: secret-conf
