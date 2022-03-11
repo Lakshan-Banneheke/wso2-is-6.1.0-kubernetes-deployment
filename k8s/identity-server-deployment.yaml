@@ -32,7 +32,7 @@ spec:
 
       containers:
       - name: wso2is
-        image: wso2is-5.12.0-alpha12
+        image: lakshanbanneheke/wso2is-5.12.0
         livenessProbe:
           exec:
             command:
