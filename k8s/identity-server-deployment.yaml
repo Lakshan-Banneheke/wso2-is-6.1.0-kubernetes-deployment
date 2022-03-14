@@ -32,7 +32,7 @@ spec:
 
       containers:
       - name: wso2is
-        image: lakshanbanneheke/wso2is-5.12.0
+        image: lakshanbanneheke/wso2is-5.12.0-alpha12
         livenessProbe:
           exec:
             command:
@@ -70,16 +70,6 @@ spec:
                 fieldPath: status.podIP
           - name: HOST_NAME
             value: wso2is
-          - name: AWS_ACCESS_KEY_ID
-            valueFrom:
-              secretKeyRef:
-                name: aws-credentials-secret
-                key: aws_access_key_id
-          - name: AWS_SECRET_ACCESS_KEY
-            valueFrom:
-              secretKeyRef:
-                name: aws-credentials-secret
-                key: aws_secret_access_key
         ports:
         - containerPort: 9763
           protocol: TCP
@@ -92,6 +82,9 @@ spec:
           - name: secret-conf
             mountPath: /home/wso2carbon/wso2-config-volume/repository/conf/security/secret-conf.properties
             subPath: secret-conf.properties
+          - name: debugging-conf
+            mountPath: /home/wso2carbon/wso2-config-volume/repository/conf/log4j2.properties
+            subPath: log4j2.properties
       serviceAccountName: "wso2svc-account"
       imagePullSecrets:
         - name: wso2is-deployment-creds
@@ -102,3 +95,6 @@ spec:
         - name: secret-conf
           configMap:
             name: secret-conf
+        - name: debugging-conf
+          configMap:
+            name: debugging-conf

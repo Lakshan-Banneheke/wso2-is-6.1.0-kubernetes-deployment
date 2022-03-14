@@ -13,7 +13,7 @@ spec:
   selector:
     deployment: wso2is
     app: wso2is
-  type: NodePort
+  type: LoadBalancer
   ports:
   - name: servlet-http
     port: 9763
@@ -23,5 +23,4 @@ spec:
     port: 9443
     targetPort: 9443
     protocol: TCP
-    nodePort: 30443
 ---
