@@ -13,9 +13,7 @@ data:
 
     [super_admin]
     username = "admin"
-    #Plaintext
-    #password = "$secret{admin-password#04d26004-b936-4461-bea5-37ef82f95a97}"
-    password = "$secret{admin-password}"
+    password = "admin"
     create_admin_account = true
 
     [user_store]
@@ -39,15 +37,11 @@ data:
 
     [keystore.primary]
     file_name = "wso2carbon.jks"
-    #Plaintext
-    #password = "$secret{keystore-password1#00a1292f-5cd1-4346-98c9-962182e783e8}"
-    password = "$secret{keystore-password1}"
+    password = "wso2carbon"
 
     [truststore]
     file_name="client-truststore.jks"
-    #Plaintext
-    #password="$secret{truststore-password#5fe3a998-cf3d-4639-a7c1-309d0b9b33c4}"
-    password="$secret{truststore-password}"
+    password="wso2carbon"
     type="JKS"
 
     [account_recovery.endpoint.auth]
@@ -55,60 +49,4 @@ data:
 
     [identity.auth_framework.endpoint]
     app_password= "dashboard"
-
-    [event.default_listener.identity_mgt]
-    priority="50"
-    enable =false
-
-    [event.default_listener.governance_identity_mgt]
-    priority="95"
-    enable =true
-
-    [event.default_listener.governance_identity_store]
-    priority="97"
-    enable =true
-
-    # The KeyStore which is used for encrypting/decrypting internal data. By default the primary keystore is used as the internal keystore.
-
-    #[keystore.internal]
-    #file_name = "$ref{keystore.primary.file_name}"
-    #type = "$ref{keystore.primary.type}"
-    #password = "$ref{keystore.primary.password}"
-    #alias = "$ref{keystore.primary.alias}"
-    #key_password = "$ref{keystore.primary.key_password}"
-
-    # The KeyStore which is used for tls communication. By default the primary keystore is used as the tls keystore.
-
-    #[keystore.tls]
-    #file_name = "$ref{keystore.primary.file_name}"
-    #type = "$ref{keystore.primary.type}"
-    #password = "$ref{keystore.primary.password}"
-    #alias = "$ref{keystore.primary.alias}"
-    #key_password = "$ref{keystore.primary.key_password}"
-
-    #Google reCAPTCHA settings.
-
-    #[recaptcha]
-    #enabled = "true"
-    #api_url = "https://www.google.com/recaptcha/api.js"
-    #verify_url = "https://www.google.com/recaptcha/api/siteverify"
-    #site_key = ""
-    #secret_key = ""
-
-    # SMTP email sender settings.
-    [output_adapter.email]
-    from_address= "istest.lakshan@gmail.com"
-    username= "istest.lakshan"
-    password= "$secret{email-password}"
-    hostname= "smtp.gmail.com"
-    port= 587
-    enable_start_tls=true
-    enable_authentication=true
-    signature = "ABC.com"
-
-    [runtime_secrets]
-    enable = "true"
-
-    [system_applications]
-    read_only_apps = []
 ---

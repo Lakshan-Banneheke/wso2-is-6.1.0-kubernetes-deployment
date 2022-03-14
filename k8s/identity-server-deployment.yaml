@@ -79,12 +79,6 @@ spec:
           - name: deployment-conf
             mountPath: /home/wso2carbon/wso2-config-volume/repository/conf/deployment.toml
             subPath: deployment.toml
-          - name: secret-conf
-            mountPath: /home/wso2carbon/wso2-config-volume/repository/conf/security/secret-conf.properties
-            subPath: secret-conf.properties
-          - name: debugging-conf
-            mountPath: /home/wso2carbon/wso2-config-volume/repository/conf/log4j2.properties
-            subPath: log4j2.properties
       serviceAccountName: "wso2svc-account"
       imagePullSecrets:
         - name: wso2is-deployment-creds
@@ -92,9 +86,3 @@ spec:
         - name: deployment-conf
           configMap:
             name: deployment-conf
-        - name: secret-conf
-          configMap:
-            name: secret-conf
-        - name: debugging-conf
-          configMap:
-            name: debugging-conf
