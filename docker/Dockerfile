@@ -23,7 +23,7 @@ ARG USER_ID=10001
 ARG USER_GROUP=wso2
 ARG USER_GROUP_ID=10001
 ARG USER_HOME=/home/${USER}
-
+# build arguments for IS Pack
 ARG IS_PACK_DIRECTORY
 ARG IS_PACK_LOCATION=${USER_HOME}/${IS_PACK_DIRECTORY}
 # build arguments for external artifacts
@@ -54,12 +54,13 @@ RUN \
         netcat \
     && rm -rf /var/lib/apt/lists/*
 
+# Expand IS Pack
 COPY --chown=wso2carbon:wso2 ${IS_PACK_DIRECTORY} ${IS_PACK_LOCATION}
 
 # Create directories and change ownership to avoid frequent WARN logs.
 RUN \
    mkdir -p ${USER_HOME}/.java/.systemPrefs ${USER_HOME}/.java/.userPrefs \
-   && chown -R wso2carbon:wso2 ${USER_HOME}/.java 
+   && chown -R wso2carbon:wso2 ${USER_HOME}/.java
 
 # set the user and work directory
 USER ${USER_ID}
@@ -71,6 +72,8 @@ ENV WORKING_DIRECTORY=${USER_HOME} \
 
 # expose ports
 EXPOSE 4000 9443
+
+RUN chmod +x /home/wso2carbon/docker-entrypoint.sh
 
 # initiate container and start WSO2 Carbon server
 ENTRYPOINT ["/home/wso2carbon/docker-entrypoint.sh"]
