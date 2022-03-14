@@ -23,7 +23,7 @@ ARG USER_ID=10001
 ARG USER_GROUP=wso2
 ARG USER_GROUP_ID=10001
 ARG USER_HOME=/home/${USER}
-# build arguments for Asgardeo Pack
+# build arguments for IS Pack
 ARG IS_PACK_DIRECTORY
 ARG IS_PACK_LOCATION=${USER_HOME}/${IS_PACK_DIRECTORY}
 # build arguments for external artifacts
@@ -54,7 +54,7 @@ RUN \
         netcat \
     && rm -rf /var/lib/apt/lists/*
 
-# Expand Asgardeo Pack
+# Expand IS Pack
 COPY --chown=wso2carbon:wso2 ${IS_PACK_DIRECTORY} ${IS_PACK_LOCATION}
 
 # Create directories and change ownership to avoid frequent WARN logs.
